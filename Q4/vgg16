@@ -1,0 +1,39 @@
+import os
+import numpy as np
+import pandas as pd
+from keras.models import Model
+from keras.preprocessing.image import load_img, img_to_array
+from keras.applications.vgg16 import VGG16, preprocess_input
+# 加载预训练的VGG16模型（不包括顶部的全连接层）
+model = VGG16(weights='imagenet')
+model=Model(inputs=model.input,outputs=model.get_layer('fc2').output)
+
+# 指定输入和输出文件夹
+input_folder = 'Apple' # 替换为包含图像的文件夹路径
+output_excel = 'Apple.csv' # 输出 Excel 文件路径
+
+# 初始化一个空的 DataFrame 用于存储特征
+features_list = []
+
+# 遍历输入文件夹中的图像
+for filename in os.listdir(input_folder):
+    if filename.endswith(('.jpg', '.jpeg', '.png')): # 确保是图像文件
+        image_path = os.path.join(input_folder, filename)
+
+        # 加载图像并将其转换为适当的格式以供 VGG16 模型使用
+        img = load_img(image_path, target_size=(224, 224)) # VGG16 的默认输入尺寸
+        img_array = img_to_array(img)
+        img_array = np.expand_dims(img_array, axis=0)
+        img_array = preprocess_input(img_array)
+
+        # 使用 VGG16 模型提取特征
+        features = model.predict(img_array).flatten()
+
+        # 将文件名和对应的特征添加到列表中
+        features_list.append([filename] + features.tolist())
+
+# 创建一个 DataFrame 来保存特征数据
+columns = ['Filename'] + [f'feature_{i}' for i in range(len(features_list[0]) - 1)]
+data_df = pd.DataFrame(features_list, columns=columns)
+
+data_df.to_csv(output_excel, index=False)
