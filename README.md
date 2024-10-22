@@ -14,4 +14,7 @@
 and Shang history[J]. Chinese Studies in History, 2020, 53(4): 351-368.
 <br>[3]  宋传鸣, 乔明泽, 洪陋. 边缘梯度协方差引导的甲骨文字修复算法[J].辽宁师范大学学 报(自然科学版), 2023, 46(02):194-207.
 <br>[4] Zhang C, Zong R, Cao S, et al. AI-powered oracle bone inscriptions recognition and fragments rejoining[C]//Proceedings  of the  Twenty-Ninth  International  Conference on International Joint Conferences on Artificial Intelligence. 2021: 5309-5311.
-## 我们的工作参考自：[](https://github.com/bubbliiiing/unet-keras)，需要按照
+## 方法描述
+**我们的工作参考自：https://github.com/bubbliiiing/unet-keras**
+<br>需要按照其README要求配置数据等文件，我们提供训练后的权重文件，可以在./checkpoints中找到
+
