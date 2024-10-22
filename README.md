@@ -15,6 +15,13 @@ and Shang history[J]. Chinese Studies in History, 2020, 53(4): 351-368.
 <br>[3]  宋传鸣, 乔明泽, 洪陋. 边缘梯度协方差引导的甲骨文字修复算法[J].辽宁师范大学学 报(自然科学版), 2023, 46(02):194-207.
 <br>[4] Zhang C, Zong R, Cao S, et al. AI-powered oracle bone inscriptions recognition and fragments rejoining[C]//Proceedings  of the  Twenty-Ninth  International  Conference on International Joint Conferences on Artificial Intelligence. 2021: 5309-5311.
 ## 方法描述
+### 问题一
+图像预处理模型的代码可见./Q1/Preprocessing所示
+### 问题二以及问题三
 **我们的工作参考自：https://github.com/bubbliiiing/unet-keras**
-<br>需要按照其README要求配置数据等文件，我们提供训练后的权重文件，可以在./checkpoints中找到
+<br>需要按照其README要求配置数据等文件，训练后的权重文件可以在./checkpoints中找到
+### 问题四
+我们采用vgg16+SVM的方式在分割的基础上完成分类，代码可见./O4，Q4中segmentation.py文件用于进行连通域分析，得到单字的bounding box，vgg16.py用于提取图像特征，svm.py用于进行分类
+
+
 
